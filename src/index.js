@@ -5,12 +5,15 @@ import './index.scss';
 import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
-import Navbar from "./components/navbar";
-import Banner from "./components/banner";
 import 'bootstrap/dist/css/bootstrap.css';
+import 'jquery/jquery.js';
+import 'bootstrap/dist/js/bootstrap.js';
 
-ReactDOM.render(<Navbar />, document.getElementById('nav-menu'));
-ReactDOM.render(<Banner />, document.getElementById('banner'));
+// import Navbar from "./components/navbar";
+// import Banner from "./components/banner";
+// ReactDOM.render(<Navbar />, document.getElementById('nav-menu'));
+// ReactDOM.render(<Banner />, document.getElementById('banner'));
+
 ReactDOM.render(
     <React.StrictMode>
         <Router>
