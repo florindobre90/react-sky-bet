@@ -6,7 +6,7 @@ import App from './App';
 import Home from './pages/Home';
 import About from './pages/About';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'jquery/jquery.js';
+import 'jquery/dist/jquery.js';
 import 'bootstrap/dist/js/bootstrap.js';
 
 // import Navbar from "./components/navbar";

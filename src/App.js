@@ -10,9 +10,7 @@ function App({children}) {
       <Navbar />
       <main role="main" className="container">
         <Baner />
-        <div className="my-3 p-3 bg-white rounded shadow-sm">
-            {children}
-        </div>
+        {children}
       </main>
     </div>
   );
@@ -20,3 +18,9 @@ function App({children}) {
 
 
 export default App;
+
+// componenta: league -> o lista de events(games), -> markets(tip de pariu) -> lista de oucome
+// o liga
+// lista de meciuri -> care contin un tip de pariu (market)
+// lista de pariu contine rezultate posibile. un market are mai multe outcomeuri
+//
