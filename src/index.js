@@ -8,6 +8,8 @@ import About from './pages/About';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'jquery/dist/jquery.js';
 import 'bootstrap/dist/js/bootstrap.js';
+import { Provider } from 'react-redux';
+import store from  './redux/store';
 
 // import Navbar from "./components/navbar";
 // import Banner from "./components/banner";
@@ -15,7 +17,7 @@ import 'bootstrap/dist/js/bootstrap.js';
 // ReactDOM.render(<Banner />, document.getElementById('banner'));
 
 ReactDOM.render(
-    <React.StrictMode>
+    <Provider store={store}>
         <Router>
             <App>
                 <Switch>
@@ -24,7 +26,7 @@ ReactDOM.render(
                 </Switch>
             </App>
         </Router>
-    </React.StrictMode>,
+    </Provider>,
     document.getElementById('root')
 );
 
