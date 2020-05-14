@@ -4,10 +4,11 @@ import Event from "../event";
 class Legue extends Component {
 
     render() {
-        const leagueDetails = this.props.item;
-        const eventList = Object.keys(leagueDetails).map((item, i) => {
-            return ( <Event item={leagueDetails[item]} key={i} /> );
-        });
+
+            const leagueDetails = this.props.item;
+            const eventList = Object.keys(leagueDetails).map((item, i) => {
+                return (<Event item={leagueDetails[item]} key={i}/>);
+            });
 
         // console.log(leagueDetails);
         // console.log(eventList);

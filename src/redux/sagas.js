@@ -8,11 +8,10 @@ export default function* rootSaga() {
 function* getEvents(action) {
     const response = yield fetchFromApi('football/live');
     if (response) {
+        //console.log('saga', response);
         yield put(getEventsSuccess(response));
     }
-
 }
-
 
 function fetchFromApi(path) {
     return fetch(`http://localhost:8888/${path}`).then(response => response.json());

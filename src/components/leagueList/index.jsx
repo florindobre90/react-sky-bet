@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+
+import { connect } from "react-redux";
+import { getEvents } from "../../redux/actions";
+import { isLoadingSelector, liveEventsSelector } from "../../redux/selector";
+
 import League from '../../components/league';
 
 class LeagueList extends Component {
@@ -7,15 +12,12 @@ class LeagueList extends Component {
     };
 
     componentDidMount() {
-        this.fetchData();
+        this.props.getLiveEvents(false);
     }
 
-    async fetchData() {
-
-        const resp = await fetch('http://localhost:8888/football/live');
-        const data = await resp.json();
-
-        const leaguesGrouped = data.events.reduce(( acc, event ) => {
+    render() {
+        //console.log('props', this.props.liveEvents);
+        const leaguesGrouped = this.props.liveEvents.reduce(( acc, event ) => {
             if(acc[event.linkedEventTypeId]) {
                 acc[event.linkedEventTypeId].push(event);
                 return acc;
@@ -25,21 +27,44 @@ class LeagueList extends Component {
                 return acc;
             }
         }, {} );
-        console.log(leaguesGrouped);
-        this.setState({ leagues: leaguesGrouped  });
-    };
 
-    render() {
-        const leaguesList = Object.keys(this.state.leagues).map((item, i) => {
-            return ( <League item={this.state.leagues[item]} key={i} /> );
+        //this.setState({ leagues: leaguesGrouped });
+        //console.log('leaguesGrouped', leaguesGrouped);
+
+        const leaguesList = Object.keys(leaguesGrouped).map((item, i) => {
+            return (<League item={leaguesGrouped[item]} key={i}/>);
         });
 
+        //console.log('leaguesList', leaguesList);
+
         return (
-            <div>
-                {leaguesList}
-            </div>
+            <>
+                <div>
+                    {this.props.isLoading ? "WOOOOOOOOOOOOOOOOOOOOOOO" : "NOT LOADING"}
+                </div>
+                <div>
+                    {leaguesList}
+                </div>
+            </>
         );
     }
 }
 
-export default LeagueList;
+//export default LeagueList;
+const mapStateToProps = state => {
+    return {
+        isLoading: isLoadingSelector()(state),
+        liveEvents: liveEventsSelector()(state)
+    };
+};
+const mapDispatchToProps = dispatch => {
+    return {
+        getLiveEvents: (withPrimaryMarkets = false) => {
+            dispatch(getEvents(withPrimaryMarkets));
+        }
+    };
+};
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LeagueList);

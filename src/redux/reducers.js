@@ -9,14 +9,14 @@ const initialState = {
 function eventsReducer(state = initialState, action) {
     switch (action.type) {
         case ActionTypes.GET_EVENTS: {
-            console.log("action", action);
+            //console.log("action", action);
             return {
                 ...state,
                 isLoading: true
             };
         }
         case ActionTypes.GET_EVENTS_SUCCESS: {
-            console.log("action", action.payload.events);
+            //console.log("action", action.payload.events);
             return {
                 ...state,
                 events: action.payload.events,
