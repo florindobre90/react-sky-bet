@@ -9,17 +9,27 @@ const initialState = {
 function eventsReducer(state = initialState, action) {
     switch (action.type) {
         case ActionTypes.GET_EVENTS: {
-            //console.log("action", action);
             return {
                 ...state,
                 isLoading: true
             };
         }
         case ActionTypes.GET_EVENTS_SUCCESS: {
-            //console.log("action", action.payload.events);
+            const leaguesGrouped = action.payload.events.reduce(( acc, event ) => {
+                if(acc[event.linkedEventTypeId]) {
+                    acc[event.linkedEventTypeId].push(event);
+                    return acc;
+                }
+                else {
+                    acc[event.linkedEventTypeId] = [event];
+                    return acc;
+                }
+            }, {} );
+
             return {
                 ...state,
                 events: action.payload.events,
+                eventsGrouped: leaguesGrouped,
                 isLoading: false
             };
         }

@@ -16,26 +16,10 @@ class LeagueList extends Component {
     }
 
     render() {
-        //console.log('props', this.props.liveEvents);
-        const leaguesGrouped = this.props.liveEvents.reduce(( acc, event ) => {
-            if(acc[event.linkedEventTypeId]) {
-                acc[event.linkedEventTypeId].push(event);
-                return acc;
-            }
-            else {
-                acc[event.linkedEventTypeId] = [event];
-                return acc;
-            }
-        }, {} );
 
-        //this.setState({ leagues: leaguesGrouped });
-        //console.log('leaguesGrouped', leaguesGrouped);
-
-        const leaguesList = Object.keys(leaguesGrouped).map((item, i) => {
-            return (<League item={leaguesGrouped[item]} key={i}/>);
+        const leaguesList = this.props.liveEvents &&  Object.keys(this.props.liveEvents).map((item, i) => {
+            return (<League item={this.props.liveEvents[item]} key={i}/>);
         });
-
-        //console.log('leaguesList', leaguesList);
 
         return (
             <>

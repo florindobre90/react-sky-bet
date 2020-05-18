@@ -16,6 +16,7 @@ export const liveEventsSelector = () =>
     createSelector(
         reducerState(),
         state => {
-            return state.events;
+            // return state.events;
+            return state.eventsGrouped;
         }
     );
