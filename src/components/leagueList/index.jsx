@@ -7,9 +7,6 @@ import { isLoadingSelector, liveEventsSelector } from "../../redux/selector";
 import League from '../../components/league';
 
 class LeagueList extends Component {
-    state = {
-        leagues: [],
-    };
 
     componentDidMount() {
         this.props.getLiveEvents(false);

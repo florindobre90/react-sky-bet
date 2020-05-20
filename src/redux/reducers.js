@@ -33,6 +33,44 @@ function eventsReducer(state = initialState, action) {
                 isLoading: false
             };
         }
+        case ActionTypes.GET_MARKETS: {
+            const marketsGrouped = action.payload.reduce(( acc, market ) => {
+                if(acc[market.marketId]) {
+                    acc[market.marketId].push(market);
+                    return acc;
+                }
+                else {
+                    acc[market.marketId] = [market];
+                    return acc;
+                }
+            }, {} );
+
+            return {
+                ...state,
+                markets: marketsGrouped,
+                isLoading: false
+            };
+        }
+        case ActionTypes.GET_OUTCOMES: {
+            // console.log('reducer.get.outcomes', action.payload);
+            const outcomesGrouped = action.payload.reduce(( acc, outcome ) => {
+                // console.log('reducer.outcome.outcomes', outcome);
+                if(acc[outcome.outcome.marketId]) {
+                    acc[outcome.outcome.marketId].push(outcome.outcome);
+                    return acc;
+                }
+                else {
+                    acc[outcome.outcome.marketId] = [outcome.outcome];
+                    return acc;
+                }
+            }, {} );
+            console.log('reducer.get.outcomesGrouped', outcomesGrouped);
+            return {
+                ...state,
+                outcomes: outcomesGrouped,
+                isLoading: false
+            };
+        }
         default: {
             return state;
         }
