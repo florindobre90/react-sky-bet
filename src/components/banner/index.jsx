@@ -1,19 +1,26 @@
 import React, {Component} from 'react';
 import logoUrl from '../../assets/images/sky-bet-logo.png';
 import {isLoadingSelector, liveEventsSelector} from "../../redux/selector";
-import {getEvents } from "../../redux/actions";
+import {getEvents, setPriceToggled } from "../../redux/actions";
 import {connect} from "react-redux";
 
 class Banner extends Component {
 
     state = {
-        isChecked: false
+        isChecked: false,
+        priceToggled: false,
     };
 
     handleChecked = event => {
         this.setState({isChecked: !this.state.isChecked});
         this.props.getLiveEvents(!this.state.isChecked);
         // console.log('banner.getMarkets', this.props.marketsList);
+    }
+
+    handleOutcomePrices = event => {
+        this.setState({priceToggled: !this.state.priceToggled});
+        // console.log('banner.priceToggle SET STATE', this.state.priceToggled);
+        this.props.setPriceToggledPrice(!this.state.priceToggled);
     }
 
     render() {
@@ -24,7 +31,7 @@ class Banner extends Component {
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" onChange={this.handleChecked}/>
                     <label className="form-check-label" htmlFor="exampleCheck1" >Show primary markets</label>
                 </div>
-                <button type="button" className="btn btn-primary mx-auto">Toggle Price Format</button>
+                <button type="button" className="btn btn-primary mx-auto" onClick={this.handleOutcomePrices}>Toggle Price Format</button>
                 <span className="badge badge-pill badge-warning mx-auto">0 Boost</span>
             </div>
         );
@@ -43,6 +50,9 @@ const mapDispatchToProps = dispatch => {
         getLiveEvents: (withPrimaryMarkets = true) => {
             dispatch(getEvents(withPrimaryMarkets));
         },
+        setPriceToggledPrice: (toggled = true) => {
+            dispatch(setPriceToggled(toggled));
+        }
     };
 };
 export default connect(

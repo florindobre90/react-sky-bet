@@ -36,3 +36,11 @@ export const outcomesListSelector = () =>
         }
     );
 
+export const togglePriceSelector = () =>
+    createSelector(
+        reducerState(),
+        state => {
+            return state.togglePrice;
+        }
+    );
+

@@ -14,6 +14,12 @@ function eventsReducer(state = initialState, action) {
                 isLoading: true
             };
         }
+        case ActionTypes.SET_PRICE_TOGGLED: {
+            return {
+                ...state,
+                togglePrice: action.payload
+            };
+        }
         case ActionTypes.GET_EVENTS_SUCCESS: {
             const leaguesGrouped = action.payload.events.reduce(( acc, event ) => {
                 if(acc[event.linkedEventTypeId]) {
@@ -64,7 +70,7 @@ function eventsReducer(state = initialState, action) {
                     return acc;
                 }
             }, {} );
-            console.log('reducer.get.outcomesGrouped', outcomesGrouped);
+            // console.log('reducer.get.outcomesGrouped', outcomesGrouped);
             return {
                 ...state,
                 outcomes: outcomesGrouped,

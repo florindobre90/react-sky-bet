@@ -3,6 +3,7 @@ export const ActionTypes = {
     GET_EVENTS_SUCCESS: 'GET_EVENTS_SUCCESS',
     GET_MARKETS: 'GET_MARKETS',
     GET_OUTCOMES: 'GET_OUTCOMES',
+    SET_PRICE_TOGGLED: 'SET_PRICE_TOGGLED',
 }
 
 export function getEvents(opts) {
@@ -29,6 +30,13 @@ export function getMarkets(data) {
 export function getOutcomes(data) {
     return {
         type: ActionTypes.GET_OUTCOMES,
+        payload: data
+    }
+}
+
+export function setPriceToggled(data) {
+    return {
+        type: ActionTypes.SET_PRICE_TOGGLED,
         payload: data
     }
 }

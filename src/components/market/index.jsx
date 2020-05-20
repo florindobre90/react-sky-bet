@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {outcomesListSelector} from "../../redux/selector";
-import {getEvents} from "../../redux/actions";
 import {connect} from "react-redux";
 import OutcomeList from "../outcomeList";
 

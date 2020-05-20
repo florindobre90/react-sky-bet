@@ -35,8 +35,8 @@ function* getEvents(action) {
         yield put(getMarkets(markets));
         yield put(getOutcomes(outcomes));
 
-        console.log('sagas.markets', markets);
-        console.log('sagas.outcomes', outcomes);
+        // console.log('sagas.markets', markets);
+        // console.log('sagas.outcomes', outcomes);
     }
 }
 
