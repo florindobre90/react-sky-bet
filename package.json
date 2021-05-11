@@ -9,7 +9,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "^4.4.1",
     "jquery": "^1.12.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "node-sass": "^4.14.1",
     "popper.js": "^1.11.0",
     "react": "^16.13.1",
